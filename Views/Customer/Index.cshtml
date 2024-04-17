@@ -1,0 +1,20 @@
+﻿@model List<Customer>
+<h1>Customer List</h1>
+<table class="table">
+    <tr>
+        <td>Civil ID</td>
+        <td>Name</td>
+        <td>Phone</td>
+        <td>Email</td>
+    </tr>
+    @foreach (var customers in Model)
+    {
+        <tr>
+            <td><a href="/Customer/Details/@customers.CustomerCivilId">@customers.CustomerCivilId</a></td>
+            <td>@customers.CustomerName</td>
+            <td>@customers.CustomerPhone</td>
+            <td>@customers.CustomerEmail</td>
+        </tr>
+    }
+
+</table>
