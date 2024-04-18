@@ -1,5 +1,7 @@
-﻿<h1>Add Employee</h1>
-<form method="post" action="/Employee/Register">
+﻿@model EmployeeForm
+<h1>Add Employee</h1>
+ <form method="post" action="/Employee/Register">
+@*
     <div>
 <label for="name">First Name: </label>
 <input type="text" id="FirstName" name="firstName" required />
@@ -20,4 +22,11 @@
 <input type="text" id="Department" name="department" required />
     </div>
 <button type="submit">Add</button>
+ *@
+    @using (Html.BeginForm("Register", "Employee", FormMethod.Post))
+    {
+        
+        @Html.EditorForModel()
+        <button type="submit">Add</button>
+    }
 </form>

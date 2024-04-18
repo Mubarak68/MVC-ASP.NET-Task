@@ -47,19 +47,25 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(IFormCollection form)
+        public IActionResult Register(EmployeeForm form)
         {
-            var firstName = form["FirstName"];
-            var lastName = form["LastName"];
-            var email = form["Email"];
-            var department = form["Department"];
-
-            employeeList.Add(new Employee() { 
-                FirstName = firstName, 
-                LastName = lastName,
-                Email = email, 
-                Department = department });
-            return RedirectToAction("Index");
+            var firstName = form.FirstName;
+            var lastName = form.LastName;
+            var email = form.Email;
+            var department = form.Department;
+            if (ModelState.IsValid)
+            {
+                employeeList.Add(new Employee()
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    Department = department,
+                    EmployeeId = employeeList.Max(r => r.EmployeeId) + 1
+                }) ;
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
 
